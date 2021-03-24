@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="image_height">144dp</dimen>
+    <dimen name="_10dp">10dp</dimen>
+    <dimen name="_9dp">9dp</dimen>
+    <dimen name="_5dp">5dp</dimen>
+    <dimen name="_12dp">12dp</dimen>
+    <dimen name="_24sp">24sp</dimen>
+    <dimen name="_124dp">124dp</dimen>
+    <dimen name="_6dp">6dp</dimen>
+    <dimen name="_4dp">4dp</dimen>
+    <dimen name="_18sp">18sp</dimen>
+    <dimen name="_2dp">2dp</dimen>
+    <dimen name="_20dp">20dp</dimen>
+    <dimen name="_200dp">200dp</dimen>
+
+    <dimen name="_25dp">25dp</dimen>
+    <dimen name="_3dp">3dp</dimen>
+
+
+
+
+
+    <dimen name="_30dp">30dp</dimen>
+
+    <dimen name="_15dp">15dp</dimen>
+
+
+    <dimen name="_14sp">14sp</dimen>
+</resources>

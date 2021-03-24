@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Hunger</string>
+    <string name="name">Name</string>
+    <string name="price">Price</string>
+    <string name="description">Description</string>
+    <string name="pizza">Pizza</string>
+    <string name="order_number">Order Number</string>
+    <string name="descriptionFood">Meaty potbelly mushrooms make for the perfect vegetarian burger!</string>
+
+</resources>
