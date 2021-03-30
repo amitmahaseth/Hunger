@@ -51,12 +51,13 @@ public class DetailsActivity extends AppCompatActivity {
                     } else {
                         startActivity(new Intent(DetailsActivity.this, OrderActivity.class));
                         finish();
-                        boolean isInserted = helper.insertOrder(binding.etNameBox.getText().toString(),
+                        boolean isInserted = helper.insertOrder(
+                                binding.etNameBox.getText().toString(),
                                 binding.etPhoneBox.getText().toString(),
                                 price,
                                 image,
-                                name,
                                 description,
+                                name,
                                 Integer.parseInt(binding.tvCounter.getText().toString())
                         );
                         if (isInserted)
@@ -73,8 +74,8 @@ public class DetailsActivity extends AppCompatActivity {
 
             binding.detailImage.setImageResource(image);
             binding.priceLbl.setText(String.format("%d", 3));
-            binding.nameLbl.setText(cursor.getString(6));
-            binding.detailDescriptions.setText(cursor.getString(5));
+            binding.nameLbl.setText(cursor.getString(7));
+            binding.detailDescriptions.setText(cursor.getString(6));
 
             binding.etNameBox.setText(cursor.getString(1));
             binding.etPhoneBox.setText(cursor.getString(2));
@@ -90,8 +91,7 @@ public class DetailsActivity extends AppCompatActivity {
                         binding.etPhoneBox.setError("Required");
                         binding.etPhoneBox.requestFocus();
                     } else {
-                        startActivity(new Intent(DetailsActivity.this, OrderActivity.class));
-                        finish();
+
                         boolean isUpdated = helper.updateOrder(
                                 binding.etNameBox.getText().toString(),
                                 binding.etPhoneBox.getText().toString(),
@@ -101,12 +101,13 @@ public class DetailsActivity extends AppCompatActivity {
                                 binding.nameLbl.getText().toString(),
                                 1,
                                 id
-
                         );
                         if (isUpdated)
                             Toast.makeText(DetailsActivity.this, "Updated", Toast.LENGTH_SHORT).show();
                         else
                             Toast.makeText(DetailsActivity.this, "Failed", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(DetailsActivity.this, OrderActivity.class));
+                        finish();
                     }
                 }
             });

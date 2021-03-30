@@ -1,24 +1,28 @@
 package com.example.hunger.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.hunger.R;
 import com.example.hunger.activity.DetailsActivity;
+import com.example.hunger.database.DbHelper;
 import com.example.hunger.models.OrderModel;
 
 import java.util.ArrayList;
 
 public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.viewHolder> {
-    ArrayList<OrderModel>list;
+    ArrayList<OrderModel> list;
     Context context;
 
     public OrdersAdapter(ArrayList<OrderModel> list, Context context) {
@@ -48,6 +52,40 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.viewHolder
                 intent.putExtra("id",Integer.parseInt(model.getOrderNumber()));
                 intent.putExtra("type",2);
                 context.startActivity(intent);
+            }
+        });
+
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                new AlertDialog.Builder(context)
+                        .setTitle("Delete Item")
+                        .setMessage("Are You Sure to Delete this Item?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                list.remove(holder.getAdapterPosition());
+                                DbHelper helper=new DbHelper(context);
+                               if (helper.deleteOrder(model.getOrderNumber())>0){
+//                                   ArrayList<OrderModel> l= new DbHelper(context).getOrder();
+//                                   list.clear();
+//                                   list.addAll(l);
+                                   notifyItemChanged(holder.getAdapterPosition());
+
+                                   Toast.makeText(context,"Deleted.",Toast.LENGTH_SHORT).show();
+                               }else {
+                                   Toast.makeText(context,"Error!",Toast.LENGTH_SHORT).show();
+                               }
+
+                            }
+                        })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+
+                    }
+                }).show();
+                return false;
             }
         });
 
